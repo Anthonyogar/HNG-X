@@ -1,11 +1,9 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000; // Use the provided port or default to 3000
-
-app.use(express.json());
+const port = 8080;
 
 app.get('/api', (req, res) => {
-  const slackName = req.query.slack_name;
+  const slackName = req.query.slack_name; // Correct variable name
   const track = req.query.track;
 
   if (!slackName || !track) {
@@ -16,8 +14,8 @@ app.get('/api', (req, res) => {
   const now = new Date();
   const currentUtcTime = new Date(now.getTime() + 2 * 60000).toISOString();
 
-  const githubFileUrl = 'https://github.com/username/repo/blob/main/file_name.ext'; // Replace with your GitHub file URL
-  const githubRepoUrl = 'https://github.com/username/repo'; // Replace with your GitHub repo URL
+  const githubFileUrl = 'https://github.com/Anthonyogar/HNG-X/blob/main/app.js'; // Replace with your GitHub file URL
+  const githubRepoUrl = 'https://github.com/Anthonyogar/HNG-X'; // Replace with your GitHub repo URL
 
   const response = {
     slack_name: slackName,
@@ -35,4 +33,3 @@ app.get('/api', (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
-
